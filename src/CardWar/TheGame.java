@@ -11,8 +11,8 @@ public class TheGame {
         Writer gamewrite = new Writer("GameResults.txt");
 
         Deck deck = new Deck();
-        Players p1 = new Players();
-        Players npc = new Players();
+        Player p1 = new Player();
+        Player npc = new Player();
         deck.shuffle();
 
         ArrayList<Card> pile = new ArrayList<Card>();

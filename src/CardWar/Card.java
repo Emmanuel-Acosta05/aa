@@ -8,7 +8,7 @@ public class Card {
     public Card( int newval, String ctype){
             cardval = newval;
 
-            switch (newval) { //All the cards
+            switch (newval) { //All the cards with suits
                 case 2: cname = "2"; break;
                 case 3: cname = "3"; break;
                 case 4: cname = "4"; break;
@@ -23,13 +23,13 @@ public class Card {
                 case 13: cname = "King"; break;
                 case 14: cname = "Ace"; break;
             }
-            cname += " of " + ctype + " ";
+            cname += " of " + ctype + " "; //adds the card value with the suit
         }
 
-        public int getval() {
+        public int getval() {//gets the card's value
             return cardval;
         }
-        public String getname(){
+        public String getname(){//gets the card's name
             return  cname;
         }
     }

@@ -2,10 +2,10 @@ package CardWar;
 import java.util.List;
 import java.util.ArrayList;
 
-public class Players {
-    public List<Card> hand = new ArrayList<Card>();
+public class Player {
+    public List<Card> hand = new ArrayList<Card>(); //array for the player's hand
 
-    public Players() {
+    public Player() {
     }
 
     public Card flip(){
