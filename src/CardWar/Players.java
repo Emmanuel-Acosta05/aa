@@ -9,7 +9,6 @@ public class Players {
     }
 
     public Card flip(){
-        System.out.println(hand.size());
         if(hand.size() != 0) {
             return hand.get(0);
         }

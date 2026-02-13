@@ -4,22 +4,12 @@ import java.io.IOException;
 import java.io.FileWriter;
 import java.util.ArrayList;
 
-
 public class TheGame {
 
     public static void  main(String[] args) throws IOException {
 
-    public class{
-            public void FileWriter gamewrite = new FileWriter("GameResult.txt");
-            try{
-            public void filelogger(String msg){
-                    System.out.println(msg);
-                    gamewrite.write(msg);
-                } catch (IOException e){
-                System
-                }
-            }
-        }
+        Writer gamewrite = new Writer("GameResults.txt");
+
         Deck deck = new Deck();
         Players p1 = new Players();
         Players npc = new Players();
@@ -36,18 +26,18 @@ public class TheGame {
         }
         while(p1.hand.size() != 0 && npc.hand.size() != 0) {
             Card p1card = p1.flip();
-            System.out.println("You: ");
-            p1card.cdata();
+            gamewrite.addLine("You: ");
+            gamewrite.addLine(p1card.getname());
 
-            System.out.println("\n=========");
-
-            System.out.println("\nThe Dealer: ");
+            gamewrite.addLine("\nThe Dealer: ");
             Card npccard = npc.flip();
-            npccard.cdata();
+            gamewrite.addLine(npccard.getname());
             System.out.println();
 
             p1card = p1.hand.remove(0);
             npccard = npc.hand.remove(0);
+
+            gamewrite.addLine("");
 
             if(p1card.getval() > npccard.getval()){
                 p1.hand.add(p1card);
@@ -56,7 +46,7 @@ public class TheGame {
                 p1.hand.addAll(pile);
                 pile.clear();
 
-                System.out.println("You won the round!");
+                gamewrite.addLine("You won the round! \n==============");
             }
             else if (npccard.getval() > p1card.getval()) {
                 npc.hand.add(p1card);
@@ -65,10 +55,10 @@ public class TheGame {
                 npc.hand.addAll(pile);
                 pile.clear();
 
-                System.out.println("Dealer has won the round." );
+                gamewrite.addLine("Dealer has won the round. \n==============" );
             }
             else{
-                System.out.println("THIS IS WAR!");
+                gamewrite.addLine("THIS IS WAR!");
                 if(p1.hand.size() > 3 && npc.hand.size() > 3) {
                     for (int i = 0; i < 3; i++) {
 
@@ -83,10 +73,18 @@ public class TheGame {
                 pile.add(npccard);
             }
             if(p1.hand.size() >= 52 || npc.hand.size() == 0 ){
-                System.out.println("===============================\nYOU WON THE GAME!\n===============================");
+                gamewrite.addLine("============================" +
+                        "\n     YOU WON THE GAME!" +
+                        "\n============================");
+                gamewrite.addLine(Integer.toString(p1.hand.size()));
+                gamewrite.save();
                 break;
             } else if (npc.hand.size() == 52 || p1.hand.size() == 0) {
-                System.out.println("===============================\nThe Dealer has won the game.\n===============================");
+                gamewrite.addLine("============================" +
+                        "\nThe Dealer has won the game." +
+                        "\n============================");
+                gamewrite.addLine(Integer.toString(npc.hand.size()));
+                gamewrite.save();
                 break;
             }
         }

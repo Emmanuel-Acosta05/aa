@@ -26,10 +26,10 @@ public class Card {
             cname += " of " + ctype + " ";
         }
 
-        public void cdata() {
-            System.out.print(cname);
-        }
         public int getval() {
             return cardval;
+        }
+        public String getname(){
+            return  cname;
         }
     }
